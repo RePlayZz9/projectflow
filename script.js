@@ -329,6 +329,9 @@ function setActiveSection(sectionId) {
     
     // Re-render content for specific sections
     switch(sectionId) {
+        case 'dashboard':
+            // Dashboard content is static, just ensure icons are rendered
+            break;
         case 'goals':
             renderGoals();
             break;
@@ -340,6 +343,9 @@ function setActiveSection(sectionId) {
             break;
         case 'automations':
             renderAutomations();
+            break;
+        case 'tasks':
+            renderTasks();
             break;
     }
     
