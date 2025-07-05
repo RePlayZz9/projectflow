@@ -617,12 +617,18 @@ function renderAutomations() {
 // Modal management
 function openModal(modalId) {
     const modal = document.getElementById(modalId);
-    modal.classList.add('active');
+    if (modal) {
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
 }
 
 function closeModal(modalId) {
     const modal = document.getElementById(modalId);
-    modal.classList.remove('active');
+    if (modal) {
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+    }
 }
 
 // Event listeners
@@ -644,8 +650,12 @@ document.addEventListener('DOMContentLoaded', function() {
         document.body.style.overflow = '';
     }
     
-    mobileMenuToggle.addEventListener('click', openMobileMenu);
-    mobileOverlay.addEventListener('click', closeMobileMenu);
+    if (mobileMenuToggle) {
+        mobileMenuToggle.addEventListener('click', openMobileMenu);
+    }
+    if (mobileOverlay) {
+        mobileOverlay.addEventListener('click', closeMobileMenu);
+    }
     
     // Close mobile menu when clicking on nav items
     document.querySelectorAll('.nav-item').forEach(item => {
@@ -686,9 +696,14 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     
     // Theme toggle
-    document.getElementById('themeToggle').addEventListener('click', () => {
-        setTheme(currentTheme === 'light' ? 'dark' : 'light');
-    });
+    const themeToggle = document.getElementById('themeToggle');
+    if (themeToggle) {
+        themeToggle.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            setTheme(currentTheme === 'light' ? 'dark' : 'light');
+        });
+    }
     
     // Theme options in settings
     document.querySelectorAll('.theme-option').forEach(option => {
@@ -698,15 +713,24 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     
     // New task button
-    document.querySelector('.new-task-btn').addEventListener('click', () => {
-        openModal('newTaskModal');
-    });
+    const newTaskBtn = document.querySelector('.new-task-btn');
+    if (newTaskBtn) {
+        newTaskBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            openModal('newTaskModal');
+        });
+    }
     
     // Modal close buttons
     document.querySelectorAll('.modal-close').forEach(btn => {
         btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
             const modal = e.target.closest('.modal-overlay');
-            closeModal(modal.id);
+            if (modal) {
+                closeModal(modal.id);
+            }
         });
     });
     
@@ -714,52 +738,78 @@ document.addEventListener('DOMContentLoaded', function() {
     document.querySelectorAll('.modal-overlay').forEach(overlay => {
         overlay.addEventListener('click', (e) => {
             if (e.target === overlay) {
+                e.preventDefault();
+                e.stopPropagation();
                 closeModal(overlay.id);
             }
         });
     });
     
     // Cancel task button
-    document.getElementById('cancelTask').addEventListener('click', () => {
-        closeModal('newTaskModal');
-    });
+    const cancelTaskBtn = document.getElementById('cancelTask');
+    if (cancelTaskBtn) {
+        cancelTaskBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            closeModal('newTaskModal');
+        });
+    }
     
     // New task form
-    document.getElementById('newTaskForm').addEventListener('submit', (e) => {
-        e.preventDefault();
-        
-        const formData = new FormData(e.target);
-        const newTask = {
-            id: Date.now().toString(),
-            name: document.getElementById('taskName').value,
-            status: document.getElementById('taskStatus').value,
-            priority: document.getElementById('taskPriority').value,
-            assignee: {
-                name: document.getElementById('taskAssignee').value,
-                initials: getInitials(document.getElementById('taskAssignee').value)
-            },
-            dueDate: new Date(document.getElementById('taskDueDate').value).toLocaleDateString('en-US', { month: 'short', day: 'numeric' }),
-            project: document.getElementById('taskProject').value,
-            comments: 0,
-            attachments: 0
-        };
-        
-        tasks.unshift(newTask);
-        renderTasks();
-        closeModal('newTaskModal');
-        e.target.reset();
-    });
+    const newTaskForm = document.getElementById('newTaskForm');
+    if (newTaskForm) {
+        newTaskForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            const taskName = document.getElementById('taskName');
+            const taskStatus = document.getElementById('taskStatus');
+            const taskPriority = document.getElementById('taskPriority');
+            const taskAssignee = document.getElementById('taskAssignee');
+            const taskDueDate = document.getElementById('taskDueDate');
+            const taskProject = document.getElementById('taskProject');
+            
+            if (taskName && taskStatus && taskPriority && taskAssignee && taskDueDate && taskProject) {
+                const newTask = {
+                    id: Date.now().toString(),
+                    name: taskName.value,
+                    status: taskStatus.value,
+                    priority: taskPriority.value,
+                    assignee: {
+                        name: taskAssignee.value,
+                        initials: getInitials(taskAssignee.value)
+                    },
+                    dueDate: new Date(taskDueDate.value).toLocaleDateString('en-US', { month: 'short', day: 'numeric' }),
+                    project: taskProject.value,
+                    comments: 0,
+                    attachments: 0
+                };
+                
+                tasks.unshift(newTask);
+                renderTasks();
+                closeModal('newTaskModal');
+                e.target.reset();
+            }
+        });
+    }
     
     // Calendar navigation
-    document.getElementById('prevMonth').addEventListener('click', () => {
-        currentDate.setMonth(currentDate.getMonth() - 1);
-        renderCalendar();
-    });
+    const prevMonthBtn = document.getElementById('prevMonth');
+    const nextMonthBtn = document.getElementById('nextMonth');
     
-    document.getElementById('nextMonth').addEventListener('click', () => {
-        currentDate.setMonth(currentDate.getMonth() + 1);
-        renderCalendar();
-    });
+    if (prevMonthBtn) {
+        prevMonthBtn.addEventListener('click', () => {
+            currentDate.setMonth(currentDate.getMonth() - 1);
+            renderCalendar();
+        });
+    }
+    
+    if (nextMonthBtn) {
+        nextMonthBtn.addEventListener('click', () => {
+            currentDate.setMonth(currentDate.getMonth() + 1);
+            renderCalendar();
+        });
+    }
     
     // View toggle buttons
     document.querySelectorAll('.view-btn').forEach(btn => {
@@ -770,11 +820,14 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     
     // Select all checkbox
-    document.getElementById('selectAll').addEventListener('change', (e) => {
-        document.querySelectorAll('.task-checkbox').forEach(checkbox => {
-            checkbox.checked = e.target.checked;
+    const selectAllCheckbox = document.getElementById('selectAll');
+    if (selectAllCheckbox) {
+        selectAllCheckbox.addEventListener('change', (e) => {
+            document.querySelectorAll('.task-checkbox').forEach(checkbox => {
+                checkbox.checked = e.target.checked;
+            });
         });
-    });
+    }
     
     // Initial render
     renderTasks();
