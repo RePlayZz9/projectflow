@@ -2261,36 +2261,895 @@ input[type="checkbox"]:checked {
 }
 
 /* Responsive Design */
+
+/* Mobile Menu Toggle */
+.mobile-menu-toggle {
+    display: none;
+    padding: 8px;
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    cursor: pointer;
+    border-radius: 4px;
+    transition: all 0.15s ease;
+}
+
+.mobile-menu-toggle:hover {
+    color: var(--text-primary);
+    background-color: var(--bg-tertiary);
+}
+
+.mobile-menu-toggle i {
+    width: 20px;
+    height: 20px;
+}
+
+/* Mobile Overlay */
+.mobile-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 99;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.mobile-overlay.active {
+    opacity: 1;
+}
+
+/* Responsive Breakpoints */
+
+/* Large tablets and small desktops (1024px and down) */
+@media (max-width: 1024px) {
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .goals-grid {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    }
+    
+    .folders-grid {
+        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    }
+}
+
+/* Tablets (768px and down) */
 @media (max-width: 768px) {
+    .app-container {
+        position: relative;
+    }
+    
     .sidebar {
-        width: 200px;
+        position: fixed;
+        left: -240px;
+        top: 0;
+        height: 100vh;
+        z-index: 100;
+        transition: left 0.3s ease;
+        box-shadow: var(--shadow-lg);
+    }
+    
+    .sidebar.open {
+        left: 0;
+    }
+    
+    .main-content {
+        width: 100%;
+        margin-left: 0;
+    }
+    
+    .top-nav {
+        padding: 12px 16px;
+    }
+    
+    .top-nav-left {
+        gap: 12px;
+    }
+    
+    .mobile-menu-toggle {
+        display: block;
+        order: -1;
+    }
+    
+    .mobile-overlay {
+        display: block;
+    }
+    
+    .search-container {
+        flex: 1;
+        max-width: none;
     }
     
     .search-input {
-        width: 200px;
+        width: 100%;
+        max-width: 300px;
     }
     
     .top-nav-right {
         gap: 8px;
     }
     
+    .view-toggle {
+        display: none;
+    }
+    
+    .profile-section {
+        gap: 8px;
+    }
+    
+    .content-area {
+        padding: 16px;
+    }
+    
+    .section-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+        margin-bottom: 24px;
+    }
+    
+    .section-header .btn-primary {
+        align-self: stretch;
+        justify-content: center;
+    }
+    
+    .stats-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+        margin-bottom: 24px;
+    }
+    
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+    
+    .goals-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+    
+    .folders-grid {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        gap: 12px;
+    }
+    
+    .automations-stats {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+    
+    .quick-actions-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+    
+    .theme-options {
+        flex-direction: column;
+        gap: 8px;
+    }
+    
+    .theme-option {
+        flex-direction: row;
+        justify-content: flex-start;
+        min-width: auto;
+        width: 100%;
+    }
+    
+    /* Table responsiveness */
+    .table-container {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+    
     .task-table th,
     .task-table td {
-        padding: 8px 12px;
+        padding: 12px 8px;
+        white-space: nowrap;
+    }
+    
+    .task-table {
+        min-width: 800px;
+    }
+    
+    .documents-table {
+        min-width: 700px;
+    }
+    
+    /* Calendar responsiveness */
+    .calendar-day {
+        min-height: 80px;
+        padding: 6px;
+    }
+    
+    .day-number {
+        font-size: 12px;
+    }
+    
+    .event-item {
+        font-size: 9px;
+        padding: 1px 3px;
+    }
+    
+    /* Modal responsiveness */
+    .modal {
+        width: 95%;
+        margin: 16px;
+    }
+    
+    .modal-header,
+    .modal-body {
+        padding: 16px;
     }
     
     .form-row {
         grid-template-columns: 1fr;
+        gap: 12px;
+    }
+    
+    /* Automation cards */
+    .automation-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+    
+    .automation-details {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+    
+    .automation-triggers {
+        width: 100%;
+    }
+    
+    /* Event cards */
+    .event-card {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+    
+    .event-meta {
+        flex-wrap: wrap;
+        gap: 8px;
     }
 }
 
+/* Small tablets and large phones (640px and down) */
 @media (max-width: 640px) {
-    .sidebar {
-        position: fixed;
-        left: -240px;
-        z-index: 100;
-        transition: left 0.3s ease;
+    .top-nav {
+        padding: 8px 12px;
     }
+    
+    .search-input {
+        font-size: 16px; /* Prevents zoom on iOS */
+        max-width: 200px;
+    }
+    
+    .new-task-btn span {
+        display: none;
+    }
+    
+    .profile-section {
+        gap: 4px;
+    }
+    
+    .profile-avatar {
+        width: 28px;
+        height: 28px;
+        font-size: 12px;
+    }
+    
+    .content-area {
+        padding: 12px;
+    }
+    
+    .section-header h1 {
+        font-size: 20px;
+    }
+    
+    .section-header p {
+        font-size: 14px;
+    }
+    
+    .stat-card {
+        padding: 16px;
+    }
+    
+    .stat-value {
+        font-size: 24px;
+    }
+    
+    .chart-card,
+    .recent-tasks-card {
+        padding: 16px;
+    }
+    
+    .goal-card {
+        padding: 16px;
+    }
+    
+    .goal-header {
+        gap: 12px;
+    }
+    
+    .goal-icon {
+        width: 32px;
+        height: 32px;
+    }
+    
+    .goal-icon i {
+        width: 16px;
+        height: 16px;
+    }
+    
+    .goal-footer {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+    
+    .folders-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .folder-item {
+        padding: 12px;
+    }
+    
+    .calendar-header {
+        flex-direction: column;
+        gap: 12px;
+        align-items: flex-start;
+    }
+    
+    .calendar-day {
+        min-height: 60px;
+        padding: 4px;
+    }
+    
+    .day-number {
+        font-size: 11px;
+    }
+    
+    .event-item {
+        font-size: 8px;
+        padding: 1px 2px;
+    }
+    
+    .automation-card {
+        padding: 16px;
+    }
+    
+    .automation-icon {
+        width: 32px;
+        height: 32px;
+    }
+    
+    .automation-icon i {
+        width: 16px;
+        height: 16px;
+    }
+    
+    .settings-content {
+        padding: 16px;
+    }
+    
+    .settings-section-header {
+        gap: 12px;
+    }
+    
+    .settings-icon {
+        width: 32px;
+        height: 32px;
+    }
+    
+    .settings-icon i {
+        width: 16px;
+        height: 16px;
+    }
+    
+    .settings-card {
+        padding: 16px;
+    }
+    
+    .quick-action-btn {
+        padding: 16px;
+    }
+    
+    .quick-action-icon {
+        width: 32px;
+        height: 32px;
+    }
+    
+    .quick-action-icon i {
+        width: 16px;
+        height: 16px;
+    }
+}
+
+/* Mobile phones (480px and down) */
+@media (max-width: 480px) {
+    .top-nav-left {
+        gap: 8px;
+    }
+    
+    .search-container {
+        display: none; /* Hide search on very small screens */
+    }
+    
+    .top-nav-right {
+        gap: 4px;
+    }
+    
+    .content-area {
+        padding: 8px;
+    }
+    
+    .section-header {
+        margin-bottom: 16px;
+    }
+    
+    .section-header h1 {
+        font-size: 18px;
+    }
+    
+    .stats-grid {
+        gap: 12px;
+        margin-bottom: 16px;
+    }
+    
+    .stat-card {
+        padding: 12px;
+    }
+    
+    .stat-content {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+    
+    .stat-icon {
+        width: 32px;
+        height: 32px;
+        order: -1;
+    }
+    
+    .stat-icon i {
+        width: 16px;
+        height: 16px;
+    }
+    
+    .stat-value {
+        font-size: 20px;
+    }
+    
+    .chart-card,
+    .recent-tasks-card {
+        padding: 12px;
+    }
+    
+    .chart-container {
+        height: 150px;
+    }
+    
+    .chart-bars {
+        height: 120px;
+    }
+    
+    .goal-card {
+        padding: 12px;
+    }
+    
+    .goal-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+    
+    .goal-icon {
+        width: 28px;
+        height: 28px;
+    }
+    
+    .goal-icon i {
+        width: 14px;
+        height: 14px;
+    }
+    
+    .goal-info h3 {
+        font-size: 14px;
+    }
+    
+    .goal-info p {
+        font-size: 12px;
+    }
+    
+    .calendar-day {
+        min-height: 50px;
+        padding: 2px;
+    }
+    
+    .day-number {
+        font-size: 10px;
+    }
+    
+    .event-item {
+        display: none; /* Hide events on very small screens */
+    }
+    
+    .more-events {
+        display: none;
+    }
+    
+    .automation-card {
+        padding: 12px;
+    }
+    
+    .automation-header {
+        gap: 8px;
+    }
+    
+    .automation-icon {
+        width: 28px;
+        height: 28px;
+    }
+    
+    .automation-icon i {
+        width: 14px;
+        height: 14px;
+    }
+    
+    .automation-title h3 {
+        font-size: 14px;
+    }
+    
+    .automation-info p {
+        font-size: 12px;
+    }
+    
+    .settings-card {
+        padding: 12px;
+    }
+    
+    .settings-section-header h2 {
+        font-size: 16px;
+    }
+    
+    .settings-item {
+        padding: 12px 0;
+    }
+    
+    .settings-item h3 {
+        font-size: 13px;
+    }
+    
+    .settings-item p {
+        font-size: 11px;
+    }
+    
+    .quick-action-btn {
+        padding: 12px;
+        flex-direction: column;
+        text-align: center;
+        gap: 8px;
+    }
+    
+    .quick-action-icon {
+        width: 28px;
+        height: 28px;
+    }
+    
+    .quick-action-icon i {
+        width: 14px;
+        height: 14px;
+    }
+    
+    /* Table becomes card-like on very small screens */
+    .task-table thead {
+        display: none;
+    }
+    
+    .task-table,
+    .task-table tbody,
+    .task-table tr,
+    .task-table td {
+        display: block;
+        width: 100%;
+    }
+    
+    .task-table tr {
+        background-color: var(--bg-primary);
+        border: 1px solid var(--border-primary);
+        border-radius: 8px;
+        margin-bottom: 12px;
+        padding: 12px;
+        box-shadow: var(--shadow);
+    }
+    
+    .task-table td {
+        padding: 4px 0;
+        border: none;
+        position: relative;
+        padding-left: 40%;
+    }
+    
+    .task-table td:before {
+        content: attr(data-label);
+        position: absolute;
+        left: 0;
+        width: 35%;
+        font-weight: 600;
+        color: var(--text-secondary);
+        font-size: 12px;
+    }
+    
+    .checkbox-col,
+    .actions-col {
+        display: none;
+    }
+}
+
+/* Very small screens (360px and down) */
+@media (max-width: 360px) {
+    .sidebar {
+        width: 100%;
+        left: -100%;
+    }
+    
+    .sidebar.open {
+        left: 0;
+    }
+    
+    .logo-text {
+        font-size: 16px;
+    }
+    
+    .nav-item {
+        padding: 10px;
+        font-size: 13px;
+    }
+    
+    .workspace-item {
+        padding: 6px 10px;
+        font-size: 13px;
+    }
+    
+    .top-nav {
+        padding: 6px 8px;
+    }
+    
+    .new-task-btn {
+        padding: 6px 8px;
+        font-size: 12px;
+    }
+    
+    .profile-avatar {
+        width: 24px;
+        height: 24px;
+        font-size: 10px;
+    }
+    
+    .content-area {
+        padding: 6px;
+    }
+    
+    .section-header h1 {
+        font-size: 16px;
+    }
+    
+    .section-header p {
+        font-size: 12px;
+    }
+    
+    .modal {
+        width: 98%;
+        margin: 8px;
+    }
+    
+    .modal-header,
+    .modal-body {
+        padding: 12px;
+    }
+    
+    .form-group label {
+        font-size: 12px;
+    }
+    
+    .form-group input,
+    .form-group select {
+        font-size: 14px;
+        padding: 6px 8px;
+    }
+}
+
+/* Touch-friendly improvements */
+@media (hover: none) and (pointer: coarse) {
+    /* Increase touch targets */
+    .nav-item,
+    .workspace-item,
+    .task-action-btn,
+    .view-btn,
+    .theme-toggle,
+    .profile-dropdown,
+    .automation-toggle,
+    .automation-settings,
+    .calendar-nav-btn {
+        min-height: 44px;
+        min-width: 44px;
+    }
+    
+    /* Remove hover states that don't work on touch */
+    .task-actions {
+        opacity: 1;
+    }
+    
+    .assignee-add,
+    .more-actions-btn {
+        opacity: 1;
+    }
+    
+    /* Improve scrolling */
+    .table-container,
+    .content-area {
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    /* Larger tap targets for checkboxes */
+    input[type="checkbox"] {
+        width: 20px;
+        height: 20px;
+    }
+}
+
+/* High DPI displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    /* Ensure crisp rendering on high DPI displays */
+    .logo-icon,
+    .nav-item i,
+    .stat-icon i,
+    .goal-icon i,
+    .automation-icon i,
+    .settings-icon i {
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+}
+
+/* Landscape orientation on mobile */
+@media (max-width: 768px) and (orientation: landscape) {
+    .sidebar {
+        width: 200px;
+        left: -200px;
+    }
+    
+    .calendar-day {
+        min-height: 70px;
+    }
+    
+    .chart-container {
+        height: 120px;
+    }
+    
+    .chart-bars {
+        height: 100px;
+    }
+}
+
+/* Print styles */
+@media print {
+    .sidebar,
+    .top-nav,
+    .mobile-menu-toggle,
+    .mobile-overlay,
+    .task-actions,
+    .more-actions-btn,
+    .automation-controls,
+    .btn-primary,
+    .btn-secondary {
+        display: none !important;
+    }
+    
+    .main-content {
+        margin-left: 0;
+        width: 100%;
+    }
+    
+    .content-area {
+        padding: 0;
+    }
+    
+    .task-table {
+        font-size: 12px;
+    }
+    
+    .task-table th,
+    .task-table td {
+        padding: 4px 8px;
+    }
+    
+    .stat-card,
+    .goal-card,
+    .automation-card {
+        break-inside: avoid;
+        page-break-inside: avoid;
+    }
+}
+
+/* Reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+    
+    .sidebar {
+        transition: none;
+    }
+    
+    .mobile-overlay {
+        transition: none;
+    }
+    
+    .modal {
+        transition: none;
+    }
+    
+    .modal-overlay {
+        transition: none;
+    }
+}
+
+/* Dark mode specific responsive adjustments */
+@media (max-width: 768px) {
+    .dark-theme .sidebar {
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+    }
+}
+
+/* Focus management for accessibility */
+@media (max-width: 768px) {
+    .sidebar:focus-within {
+        left: 0;
+    }
+    
+    .nav-item:focus,
+    .workspace-item:focus {
+        outline: 2px solid var(--accent-primary);
+        outline-offset: 2px;
+    }
+}
+
+/* Ensure proper spacing on all screen sizes */
+@media (max-width: 1200px) {
+    .content-area {
+        max-width: 100%;
+    }
+    
+    .dashboard-content,
+    .docs-content,
+    .calendar-container,
+    .automations-content,
+    .settings-content {
+        max-width: 100%;
+    }
+}
     
     .sidebar.open {
         left: 0;

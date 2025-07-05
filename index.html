@@ -102,6 +102,9 @@
             <!-- Top Navigation -->
             <header class="top-nav">
                 <div class="top-nav-left">
+                    <button class="mobile-menu-toggle" id="mobileMenuToggle">
+                        <i data-lucide="menu"></i>
+                    </button>
                     <div class="search-container">
                         <i data-lucide="search"></i>
                         <input type="text" placeholder="Search tasks, projects, or people..." class="search-input">
@@ -663,6 +666,9 @@
             </div>
         </main>
     </div>
+
+    <!-- Mobile Overlay -->
+    <div class="mobile-overlay" id="mobileOverlay"></div>
 
     <!-- New Task Modal -->
     <div class="modal-overlay" id="newTaskModal">

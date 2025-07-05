@@ -336,10 +336,10 @@ function renderTasks() {
     const tbody = document.getElementById('taskTableBody');
     tbody.innerHTML = tasks.map((task, index) => `
         <tr class="${index % 2 === 0 ? 'even' : 'odd'}">
-            <td>
+            <td data-label="Select">
                 <input type="checkbox" class="task-checkbox">
             </td>
-            <td>
+            <td data-label="Task Name">
                 <div class="task-name">
                     <span class="task-name-text">${task.name}</span>
                     <div class="task-actions">
@@ -361,16 +361,16 @@ function renderTasks() {
                     </div>
                 </div>
             </td>
-            <td>
+            <td data-label="Status">
                 <span class="status-badge ${getStatusColor(task.status)}">${task.status}</span>
             </td>
-            <td>
+            <td data-label="Priority">
                 <div class="priority-container">
                     ${getPriorityIcon(task.priority)}
                     <span class="priority-text">${task.priority}</span>
                 </div>
             </td>
-            <td>
+            <td data-label="Assignee">
                 <div class="assignee-container">
                     <div class="assignee-avatar">${task.assignee.initials}</div>
                     <span class="assignee-name">${task.assignee.name}</span>
@@ -379,16 +379,16 @@ function renderTasks() {
                     </button>
                 </div>
             </td>
-            <td>
+            <td data-label="Due Date">
                 <div class="due-date-container">
                     <i data-lucide="calendar"></i>
                     <span class="due-date-text">${task.dueDate}</span>
                 </div>
             </td>
-            <td>
+            <td data-label="Project">
                 <span class="project-text">${task.project}</span>
             </td>
-            <td>
+            <td data-label="Actions">
                 <button class="more-actions-btn">
                     <i data-lucide="more-horizontal"></i>
                 </button>
@@ -627,6 +627,49 @@ function closeModal(modalId) {
 
 // Event listeners
 document.addEventListener('DOMContentLoaded', function() {
+    // Mobile menu functionality
+    const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+    const mobileOverlay = document.getElementById('mobileOverlay');
+    const sidebar = document.querySelector('.sidebar');
+    
+    function openMobileMenu() {
+        sidebar.classList.add('open');
+        mobileOverlay.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+    
+    function closeMobileMenu() {
+        sidebar.classList.remove('open');
+        mobileOverlay.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+    
+    mobileMenuToggle.addEventListener('click', openMobileMenu);
+    mobileOverlay.addEventListener('click', closeMobileMenu);
+    
+    // Close mobile menu when clicking on nav items
+    document.querySelectorAll('.nav-item').forEach(item => {
+        item.addEventListener('click', () => {
+            if (window.innerWidth <= 768) {
+                closeMobileMenu();
+            }
+        });
+    });
+    
+    // Close mobile menu on window resize if screen becomes large
+    window.addEventListener('resize', () => {
+        if (window.innerWidth > 768) {
+            closeMobileMenu();
+        }
+    });
+    
+    // Handle escape key to close mobile menu
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && sidebar.classList.contains('open')) {
+            closeMobileMenu();
+        }
+    });
+    
     // Initialize theme
     const savedTheme = localStorage.getItem('theme') || 'light';
     setTheme(savedTheme);
@@ -635,6 +678,10 @@ document.addEventListener('DOMContentLoaded', function() {
     document.querySelectorAll('.nav-item').forEach(item => {
         item.addEventListener('click', () => {
             setActiveSection(item.dataset.nav);
+            // Close mobile menu on navigation
+            if (window.innerWidth <= 768) {
+                closeMobileMenu();
+            }
         });
     });
     
