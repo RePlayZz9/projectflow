@@ -319,15 +319,32 @@ function setActiveSection(sectionId) {
     
     // Update content
     document.querySelectorAll('.content-section').forEach(section => {
-        section.style.display = 'none';
         section.classList.remove('active');
     });
     
     const activeSection = document.getElementById(`${sectionId}-content`);
     if (activeSection) {
-        activeSection.style.display = 'block';
         activeSection.classList.add('active');
     }
+    
+    // Re-render content for specific sections
+    switch(sectionId) {
+        case 'goals':
+            renderGoals();
+            break;
+        case 'docs':
+            renderDocuments();
+            break;
+        case 'calendar':
+            renderCalendar();
+            break;
+        case 'automations':
+            renderAutomations();
+            break;
+    }
+    
+    // Re-initialize lucide icons
+    lucide.createIcons();
 }
 
 // Task management
@@ -734,6 +751,9 @@ document.addEventListener('DOMContentLoaded', function() {
     renderDocuments();
     renderCalendar();
     renderAutomations();
+    
+    // Set initial active section
+    setActiveSection('tasks');
     
     // Initialize lucide icons
     lucide.createIcons();
