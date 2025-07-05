@@ -292,6 +292,9 @@ body {
     border: none;
     border-radius: 8px;
     cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+    user-select: none;
     transition: background-color 0.15s ease;
 }
 
@@ -409,6 +412,9 @@ body {
     cursor: pointer;
     border-radius: 4px;
     transition: all 0.15s ease;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+    user-select: none;
 }
 
 .theme-toggle:hover {
@@ -977,6 +983,7 @@ input[type="checkbox"]:checked {
     opacity: 0;
     visibility: hidden;
     transition: all 0.3s ease;
+    touch-action: manipulation;
 }
 
 .modal-overlay.active {
@@ -2272,6 +2279,10 @@ input[type="checkbox"]:checked {
     cursor: pointer;
     border-radius: 4px;
     transition: all 0.15s ease;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+    user-select: none;
+    z-index: 1000;
 }
 
 .mobile-menu-toggle:hover {
@@ -2336,6 +2347,7 @@ input[type="checkbox"]:checked {
         height: 100vh;
         z-index: 100;
         transition: left 0.3s ease;
+        touch-action: manipulation;
         box-shadow: var(--shadow-lg);
     }
     
@@ -2401,6 +2413,8 @@ input[type="checkbox"]:checked {
     .section-header .btn-primary {
         align-self: stretch;
         justify-content: center;
+        position: relative;
+        z-index: 1001;
     }
     
     .stats-grid {
