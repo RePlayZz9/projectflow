@@ -782,7 +782,6 @@ document.addEventListener('DOMContentLoaded', function() {
     renderDocuments();
     renderCalendar();
     renderAutomations();
-    renderMobileTasks();
     
     // Set initial active section (tasks is already active in HTML)
     currentSection = 'tasks';
