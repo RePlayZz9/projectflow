@@ -123,10 +123,6 @@
                             <i data-lucide="calendar"></i>
                         </button>
                     </div>
-                    <button class="notification-btn">
-                        <i data-lucide="bell"></i>
-                        <span class="notification-badge"></span>
-                    </button>
                     <div class="profile-section">
                         <div class="profile-avatar">JD</div>
                         <button class="profile-dropdown">
@@ -139,33 +135,530 @@
                 </div>
             </header>
 
-            <!-- Task Table -->
-            <div class="task-section">
-                <div class="task-header">
-                    <h1>Tasks</h1>
-                    <p>Manage your team's work and track progress</p>
+            <!-- Content Area -->
+            <div class="content-area" id="contentArea">
+                <!-- Dashboard Content -->
+                <div class="content-section" id="dashboard-content" style="display: none;">
+                    <div class="section-header">
+                        <h1>Dashboard</h1>
+                        <p>Overview of your project progress and team activity</p>
+                    </div>
+                    <div class="dashboard-content">
+                        <div class="stats-grid">
+                            <div class="stat-card">
+                                <div class="stat-content">
+                                    <div class="stat-info">
+                                        <p class="stat-label">Total Tasks</p>
+                                        <p class="stat-value">156</p>
+                                        <p class="stat-change positive">+12%</p>
+                                    </div>
+                                    <div class="stat-icon green">
+                                        <i data-lucide="check-circle"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-content">
+                                    <div class="stat-info">
+                                        <p class="stat-label">In Progress</p>
+                                        <p class="stat-value">24</p>
+                                        <p class="stat-change positive">+8%</p>
+                                    </div>
+                                    <div class="stat-icon blue">
+                                        <i data-lucide="clock"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-content">
+                                    <div class="stat-info">
+                                        <p class="stat-label">Team Members</p>
+                                        <p class="stat-value">12</p>
+                                        <p class="stat-change positive">+2</p>
+                                    </div>
+                                    <div class="stat-icon purple">
+                                        <i data-lucide="users"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-content">
+                                    <div class="stat-info">
+                                        <p class="stat-label">Completion Rate</p>
+                                        <p class="stat-value">87%</p>
+                                        <p class="stat-change positive">+5%</p>
+                                    </div>
+                                    <div class="stat-icon orange">
+                                        <i data-lucide="trending-up"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="dashboard-grid">
+                            <div class="chart-card">
+                                <div class="card-header">
+                                    <h3>Activity Overview</h3>
+                                    <i data-lucide="bar-chart-3"></i>
+                                </div>
+                                <div class="chart-container">
+                                    <div class="chart-bars">
+                                        <div class="chart-bar" style="height: 40%"></div>
+                                        <div class="chart-bar" style="height: 65%"></div>
+                                        <div class="chart-bar" style="height: 45%"></div>
+                                        <div class="chart-bar" style="height: 80%"></div>
+                                        <div class="chart-bar" style="height: 55%"></div>
+                                        <div class="chart-bar" style="height: 70%"></div>
+                                        <div class="chart-bar" style="height: 85%"></div>
+                                    </div>
+                                    <div class="chart-labels">
+                                        <span>Mon</span>
+                                        <span>Tue</span>
+                                        <span>Wed</span>
+                                        <span>Thu</span>
+                                        <span>Fri</span>
+                                        <span>Sat</span>
+                                        <span>Sun</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="recent-tasks-card">
+                                <div class="card-header">
+                                    <h3>Recent Tasks</h3>
+                                    <i data-lucide="activity"></i>
+                                </div>
+                                <div class="recent-tasks-list">
+                                    <div class="recent-task-item">
+                                        <div class="task-info">
+                                            <p class="task-title">Design new landing page</p>
+                                            <p class="task-assignee">Sarah Chen</p>
+                                        </div>
+                                        <span class="status-badge status-in-progress">In Progress</span>
+                                    </div>
+                                    <div class="recent-task-item">
+                                        <div class="task-info">
+                                            <p class="task-title">Implement user auth</p>
+                                            <p class="task-assignee">Mike Johnson</p>
+                                        </div>
+                                        <span class="status-badge status-pending">Pending</span>
+                                    </div>
+                                    <div class="recent-task-item">
+                                        <div class="task-info">
+                                            <p class="task-title">Write API docs</p>
+                                            <p class="task-assignee">Alex Rodriguez</p>
+                                        </div>
+                                        <span class="status-badge status-complete">Complete</span>
+                                    </div>
+                                    <div class="recent-task-item">
+                                        <div class="task-info">
+                                            <p class="task-title">Set up CI/CD</p>
+                                            <p class="task-assignee">Emily Davis</p>
+                                        </div>
+                                        <span class="status-badge status-blocked">Blocked</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="table-container">
-                    <table class="task-table">
-                        <thead>
-                            <tr>
-                                <th class="checkbox-col">
-                                    <input type="checkbox" id="selectAll">
-                                </th>
-                                <th>Task Name</th>
-                                <th>Status</th>
-                                <th>Priority</th>
-                                <th>Assignee</th>
-                                <th>Due Date</th>
-                                <th>Project</th>
-                                <th class="actions-col"></th>
-                            </tr>
-                        </thead>
-                        <tbody id="taskTableBody">
-                            <!-- Tasks will be populated by JavaScript -->
-                        </tbody>
-                    </table>
+                <!-- Tasks Content -->
+                <div class="content-section active" id="tasks-content">
+                    <div class="section-header">
+                        <h1>Tasks</h1>
+                        <p>Manage your team's work and track progress</p>
+                    </div>
+                    <div class="table-container">
+                        <table class="task-table">
+                            <thead>
+                                <tr>
+                                    <th class="checkbox-col">
+                                        <input type="checkbox" id="selectAll">
+                                    </th>
+                                    <th>Task Name</th>
+                                    <th>Status</th>
+                                    <th>Priority</th>
+                                    <th>Assignee</th>
+                                    <th>Due Date</th>
+                                    <th>Project</th>
+                                    <th class="actions-col"></th>
+                                </tr>
+                            </thead>
+                            <tbody id="taskTableBody">
+                                <!-- Tasks will be populated by JavaScript -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Goals Content -->
+                <div class="content-section" id="goals-content" style="display: none;">
+                    <div class="section-header">
+                        <div class="header-content">
+                            <h1>Goals</h1>
+                            <p>Track and manage your team's objectives</p>
+                        </div>
+                        <button class="btn-primary">
+                            <i data-lucide="plus"></i>
+                            <span>New Goal</span>
+                        </button>
+                    </div>
+                    <div class="goals-grid" id="goalsGrid">
+                        <!-- Goals will be populated by JavaScript -->
+                    </div>
+                </div>
+
+                <!-- Docs Content -->
+                <div class="content-section" id="docs-content" style="display: none;">
+                    <div class="section-header">
+                        <div class="header-content">
+                            <h1>Documents</h1>
+                            <p>Manage and organize your project documentation</p>
+                        </div>
+                        <button class="btn-primary">
+                            <i data-lucide="plus"></i>
+                            <span>New Document</span>
+                        </button>
+                    </div>
+                    <div class="docs-content">
+                        <div class="search-bar">
+                            <div class="search-input-container">
+                                <i data-lucide="search"></i>
+                                <input type="text" placeholder="Search documents..." class="docs-search">
+                            </div>
+                        </div>
+                        <div class="folders-section">
+                            <h2>Folders</h2>
+                            <div class="folders-grid">
+                                <div class="folder-item">
+                                    <div class="folder-icon">
+                                        <i data-lucide="folder"></i>
+                                    </div>
+                                    <div class="folder-info">
+                                        <h3>Planning</h3>
+                                        <p>8 files</p>
+                                    </div>
+                                </div>
+                                <div class="folder-item">
+                                    <div class="folder-icon">
+                                        <i data-lucide="folder"></i>
+                                    </div>
+                                    <div class="folder-info">
+                                        <h3>Development</h3>
+                                        <p>12 files</p>
+                                    </div>
+                                </div>
+                                <div class="folder-item">
+                                    <div class="folder-icon">
+                                        <i data-lucide="folder"></i>
+                                    </div>
+                                    <div class="folder-info">
+                                        <h3>Research</h3>
+                                        <p>5 files</p>
+                                    </div>
+                                </div>
+                                <div class="folder-item">
+                                    <div class="folder-icon">
+                                        <i data-lucide="folder"></i>
+                                    </div>
+                                    <div class="folder-info">
+                                        <h3>Design</h3>
+                                        <p>7 files</p>
+                                    </div>
+                                </div>
+                                <div class="folder-item">
+                                    <div class="folder-icon">
+                                        <i data-lucide="folder"></i>
+                                    </div>
+                                    <div class="folder-info">
+                                        <h3>Meetings</h3>
+                                        <p>15 files</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="documents-section">
+                            <h2>Recent Documents</h2>
+                            <div class="documents-table-container">
+                                <table class="documents-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Type</th>
+                                            <th>Folder</th>
+                                            <th>Author</th>
+                                            <th>Modified</th>
+                                            <th>Size</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="documentsTableBody">
+                                        <!-- Documents will be populated by JavaScript -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Calendar Content -->
+                <div class="content-section" id="calendar-content" style="display: none;">
+                    <div class="section-header">
+                        <div class="header-content">
+                            <h1>Calendar</h1>
+                            <p>Schedule and manage your team events</p>
+                        </div>
+                        <button class="btn-primary">
+                            <i data-lucide="plus"></i>
+                            <span>New Event</span>
+                        </button>
+                    </div>
+                    <div class="calendar-container">
+                        <div class="calendar-header">
+                            <h2 id="calendarMonth">December 2024</h2>
+                            <div class="calendar-nav">
+                                <button class="calendar-nav-btn" id="prevMonth">
+                                    <i data-lucide="chevron-left"></i>
+                                </button>
+                                <button class="calendar-nav-btn" id="nextMonth">
+                                    <i data-lucide="chevron-right"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="calendar-grid" id="calendarGrid">
+                            <!-- Calendar will be populated by JavaScript -->
+                        </div>
+                        <div class="upcoming-events">
+                            <h3>Upcoming Events</h3>
+                            <div class="events-list" id="eventsList">
+                                <!-- Events will be populated by JavaScript -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Automations Content -->
+                <div class="content-section" id="automations-content" style="display: none;">
+                    <div class="section-header">
+                        <div class="header-content">
+                            <h1>Automations</h1>
+                            <p>Streamline your workflow with automated processes</p>
+                        </div>
+                        <button class="btn-primary">
+                            <i data-lucide="plus"></i>
+                            <span>New Automation</span>
+                        </button>
+                    </div>
+                    <div class="automations-content">
+                        <div class="automations-stats">
+                            <div class="stat-card">
+                                <div class="stat-content">
+                                    <div class="stat-info">
+                                        <p class="stat-label">Active Automations</p>
+                                        <p class="stat-value">4</p>
+                                    </div>
+                                    <div class="stat-icon green">
+                                        <i data-lucide="zap"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-content">
+                                    <div class="stat-info">
+                                        <p class="stat-label">Runs Today</p>
+                                        <p class="stat-value">45</p>
+                                    </div>
+                                    <div class="stat-icon blue">
+                                        <i data-lucide="play"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-content">
+                                    <div class="stat-info">
+                                        <p class="stat-label">Time Saved</p>
+                                        <p class="stat-value">12h</p>
+                                    </div>
+                                    <div class="stat-icon purple">
+                                        <i data-lucide="clock"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="automations-list" id="automationsList">
+                            <!-- Automations will be populated by JavaScript -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Settings Content -->
+                <div class="content-section" id="settings-content" style="display: none;">
+                    <div class="section-header">
+                        <h1>Settings</h1>
+                        <p>Manage your account and application preferences</p>
+                    </div>
+                    <div class="settings-content">
+                        <div class="settings-section">
+                            <div class="settings-section-header">
+                                <div class="settings-icon purple">
+                                    <i data-lucide="palette"></i>
+                                </div>
+                                <div>
+                                    <h2>Appearance</h2>
+                                    <p>Customize how the app looks and feels</p>
+                                </div>
+                            </div>
+                            <div class="settings-card">
+                                <h3>Theme</h3>
+                                <div class="theme-options">
+                                    <button class="theme-option active" data-theme="light">
+                                        <i data-lucide="sun"></i>
+                                        <span>Light</span>
+                                    </button>
+                                    <button class="theme-option" data-theme="dark">
+                                        <i data-lucide="moon"></i>
+                                        <span>Dark</span>
+                                    </button>
+                                    <button class="theme-option" data-theme="system">
+                                        <i data-lucide="monitor"></i>
+                                        <span>System</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="settings-section">
+                            <div class="settings-section-header">
+                                <div class="settings-icon gray">
+                                    <i data-lucide="user"></i>
+                                </div>
+                                <div>
+                                    <h2>Profile</h2>
+                                </div>
+                            </div>
+                            <div class="settings-card">
+                                <div class="settings-items">
+                                    <div class="settings-item">
+                                        <div>
+                                            <h3>Personal Information</h3>
+                                            <p>Update your profile details</p>
+                                        </div>
+                                        <i data-lucide="chevron-right"></i>
+                                    </div>
+                                    <div class="settings-item">
+                                        <div>
+                                            <h3>Account Preferences</h3>
+                                            <p>Manage your account settings</p>
+                                        </div>
+                                        <i data-lucide="chevron-right"></i>
+                                    </div>
+                                    <div class="settings-item">
+                                        <div>
+                                            <h3>Profile Picture</h3>
+                                            <p>Change your profile image</p>
+                                        </div>
+                                        <i data-lucide="chevron-right"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="settings-section">
+                            <div class="settings-section-header">
+                                <div class="settings-icon gray">
+                                    <i data-lucide="bell"></i>
+                                </div>
+                                <div>
+                                    <h2>Notifications</h2>
+                                </div>
+                            </div>
+                            <div class="settings-card">
+                                <div class="settings-items">
+                                    <div class="settings-item">
+                                        <div>
+                                            <h3>Email Notifications</h3>
+                                            <p>Configure email alerts</p>
+                                        </div>
+                                        <i data-lucide="chevron-right"></i>
+                                    </div>
+                                    <div class="settings-item">
+                                        <div>
+                                            <h3>Push Notifications</h3>
+                                            <p>Manage browser notifications</p>
+                                        </div>
+                                        <i data-lucide="chevron-right"></i>
+                                    </div>
+                                    <div class="settings-item">
+                                        <div>
+                                            <h3>Slack Integration</h3>
+                                            <p>Connect with Slack workspace</p>
+                                        </div>
+                                        <i data-lucide="chevron-right"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="settings-section">
+                            <div class="settings-section-header">
+                                <div class="settings-icon gray">
+                                    <i data-lucide="shield"></i>
+                                </div>
+                                <div>
+                                    <h2>Security</h2>
+                                </div>
+                            </div>
+                            <div class="settings-card">
+                                <div class="settings-items">
+                                    <div class="settings-item">
+                                        <div>
+                                            <h3>Password</h3>
+                                            <p>Change your password</p>
+                                        </div>
+                                        <i data-lucide="chevron-right"></i>
+                                    </div>
+                                    <div class="settings-item">
+                                        <div>
+                                            <h3>Two-Factor Authentication</h3>
+                                            <p>Enable 2FA for extra security</p>
+                                        </div>
+                                        <i data-lucide="chevron-right"></i>
+                                    </div>
+                                    <div class="settings-item">
+                                        <div>
+                                            <h3>API Keys</h3>
+                                            <p>Manage your API access keys</p>
+                                        </div>
+                                        <i data-lucide="chevron-right"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="quick-actions">
+                            <h2>Quick Actions</h2>
+                            <div class="quick-actions-grid">
+                                <button class="quick-action-btn">
+                                    <div class="quick-action-icon blue">
+                                        <i data-lucide="database"></i>
+                                    </div>
+                                    <div>
+                                        <h3>Export Data</h3>
+                                        <p>Download your project data</p>
+                                    </div>
+                                </button>
+                                <button class="quick-action-btn">
+                                    <div class="quick-action-icon green">
+                                        <i data-lucide="key"></i>
+                                    </div>
+                                    <div>
+                                        <h3>API Access</h3>
+                                        <p>Generate API keys</p>
+                                    </div>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </main>
@@ -228,6 +721,6 @@
         </div>
     </div>
 
-    <script src="/script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
