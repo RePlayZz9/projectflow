@@ -327,28 +327,6 @@ function setActiveSection(sectionId) {
         activeSection.classList.add('active');
     }
     
-    // Re-render content for specific sections
-    switch(sectionId) {
-        case 'dashboard':
-            // Dashboard content is static, just ensure icons are rendered
-            break;
-        case 'goals':
-            renderGoals();
-            break;
-        case 'docs':
-            renderDocuments();
-            break;
-        case 'calendar':
-            renderCalendar();
-            break;
-        case 'automations':
-            renderAutomations();
-            break;
-        case 'tasks':
-            renderTasks();
-            break;
-    }
-    
     // Re-initialize lucide icons
     lucide.createIcons();
 }
@@ -758,8 +736,8 @@ document.addEventListener('DOMContentLoaded', function() {
     renderCalendar();
     renderAutomations();
     
-    // Set initial active section
-    setActiveSection('tasks');
+    // Set initial active section (tasks is already active in HTML)
+    currentSection = 'tasks';
     
     // Initialize lucide icons
     lucide.createIcons();
