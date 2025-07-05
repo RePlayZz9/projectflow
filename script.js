@@ -636,7 +636,7 @@ document.addEventListener('DOMContentLoaded', function() {
     console.log('DOM loaded, initializing mobile functionality...');
     
     // Mobile menu functionality
-    const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+    const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
     const mobileOverlay = document.getElementById('mobileOverlay');
     const sidebar = document.querySelector('.sidebar');
     
@@ -648,15 +648,15 @@ document.addEventListener('DOMContentLoaded', function() {
     
     function openMobileMenu() {
         console.log('Opening mobile menu...');
-        sidebar.classList.add('open');
-        mobileOverlay.classList.add('active');
+        if (sidebar) sidebar.classList.add('open');
+        if (mobileOverlay) mobileOverlay.classList.add('active');
         document.body.style.overflow = 'hidden';
     }
     
     function closeMobileMenu() {
         console.log('Closing mobile menu...');
-        sidebar.classList.remove('open');
-        mobileOverlay.classList.remove('active');
+        if (sidebar) sidebar.classList.remove('open');
+        if (mobileOverlay) mobileOverlay.classList.remove('active');
         document.body.style.overflow = '';
     }
     
@@ -675,6 +675,8 @@ document.addEventListener('DOMContentLoaded', function() {
             console.log('Mobile menu toggle touched');
             openMobileMenu();
         });
+    } else {
+        console.error('Mobile menu toggle not found!');
     }
     
     if (mobileOverlay) {
@@ -690,7 +692,7 @@ document.addEventListener('DOMContentLoaded', function() {
             e.stopPropagation();
             console.log('Mobile overlay touched');
             closeMobileMenu();
-        });
+        }, { passive: false });
     }
     
     // Close mobile menu when clicking on nav items
@@ -723,6 +725,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Navigation
     document.querySelectorAll('.nav-item').forEach(item => {
         item.addEventListener('click', () => {
+            console.log('Nav item clicked:', item.dataset.nav);
             setActiveSection(item.dataset.nav);
             // Close mobile menu on navigation
             if (window.innerWidth <= 768) {
@@ -749,7 +752,9 @@ document.addEventListener('DOMContentLoaded', function() {
             e.stopPropagation();
             console.log('Theme toggle touched, current theme:', currentTheme);
             setTheme(currentTheme === 'light' ? 'dark' : 'light');
-        });
+        }, { passive: false });
+    } else {
+        console.error('Theme toggle not found!');
     }
     
     // Theme options in settings
@@ -777,7 +782,9 @@ document.addEventListener('DOMContentLoaded', function() {
             e.stopPropagation();
             console.log('New task button touched');
             openModal('newTaskModal');
-        });
+        }, { passive: false });
+    } else {
+        console.error('New task button not found!');
     }
     
     // Modal close buttons
