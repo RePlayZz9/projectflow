@@ -2267,6 +2267,130 @@ input[type="checkbox"]:checked {
     background-color: var(--border-primary);
 }
 
+/* Mobile touch improvements */
+.mobile-menu-toggle,
+.theme-toggle,
+.new-task-btn,
+.modal-close,
+.btn-primary,
+.btn-secondary {
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+    user-select: none;
+    cursor: pointer;
+}
+
+/* Ensure mobile menu toggle is properly positioned and clickable */
+.mobile-menu-toggle {
+    position: relative;
+    z-index: 1001;
+    background: transparent;
+    border: none;
+    padding: 8px;
+    border-radius: 6px;
+    transition: background-color 0.2s ease;
+}
+
+.mobile-menu-toggle:hover,
+.mobile-menu-toggle:active {
+    background-color: var(--color-gray-100);
+}
+
+.dark-theme .mobile-menu-toggle:hover,
+.dark-theme .mobile-menu-toggle:active {
+    background-color: var(--color-gray-800);
+}
+
+/* Ensure theme toggle is clickable */
+.theme-toggle {
+    position: relative;
+    z-index: 1000;
+    background: transparent;
+    border: none;
+    padding: 8px;
+    border-radius: 6px;
+    transition: background-color 0.2s ease;
+}
+
+.theme-toggle:hover,
+.theme-toggle:active {
+    background-color: var(--color-gray-100);
+}
+
+.dark-theme .theme-toggle:hover,
+.dark-theme .theme-toggle:active {
+    background-color: var(--color-gray-800);
+}
+
+/* Ensure new task button is clickable */
+.new-task-btn {
+    position: relative;
+    z-index: 1000;
+}
+
+/* Mobile overlay improvements */
+.mobile-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    touch-action: manipulation;
+}
+
+.mobile-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Sidebar mobile improvements */
+@media (max-width: 768px) {
+    .sidebar {
+        position: fixed;
+        left: -280px;
+        top: 0;
+        height: 100vh;
+        z-index: 1000;
+        transition: left 0.3s ease;
+        width: 280px;
+        background: var(--color-white);
+        border-right: 1px solid var(--color-gray-200);
+    }
+    
+    .dark-theme .sidebar {
+        background: var(--color-gray-900);
+        border-right-color: var(--color-gray-800);
+    }
+    
+    .sidebar.open {
+        left: 0;
+    }
+    
+    .mobile-menu-toggle {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+/* Modal improvements for mobile */
+@media (max-width: 768px) {
+    .modal {
+        margin: 20px;
+        max-height: calc(100vh - 40px);
+        overflow-y: auto;
+    }
+    
+    .modal-overlay {
+        padding: 0;
+    }
+}
+
 /* Responsive Design */
 
 /* Mobile Menu Toggle */
